@@ -1,10 +1,16 @@
 import os
 import mysql.connector
 
-conn = mysql.connector.connect(
-    host=os.getenv("MYSQLHOST"),
-    user=os.getenv("MYSQLUSER"),
-    password=os.getenv("MYSQLPASSWORD"),
-    database=os.getenv("MYSQLDATABASE"),
-    port=int(os.getenv("MYSQLPORT"))
-)
+try:
+    conn = mysql.connector.connect(
+        host=os.getenv("MYSQLHOST"),
+        user=os.getenv("MYSQLUSER"),
+        password=os.getenv("MYSQLPASSWORD"),
+        database=os.getenv("MYSQLDATABASE"),
+        port=int(os.getenv("MYSQLPORT"))
+    )
+    print("✅ Database connected successfully")
+
+except Exception as e:
+    print("❌ Database connection failed")
+    print(e)
